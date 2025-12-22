@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
         const payload = {id: user._id}; //payload is the data inside the badge (jwt ?) usually user id
         const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '1h'})
 
-        //RESPOND
+        //RESPOND - browser will save this response to use it later
         res.json(
             {token, user : {id: user._id, username: user.username, email: user.email}}
         );
