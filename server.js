@@ -13,8 +13,6 @@ const app = express();
 app.use(express.json());
 
 // 4. Database Connection
-// Replace process.env.MONGO_URI with your actual connection string 
-// if you haven't put it in a .env file yet.
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -32,8 +30,7 @@ connectDB();
 // This tells the server: "If a request starts with /api/auth, go look in the auth.js file"
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
-// We will uncomment this next line once you create the orders.js file!
-// app.use('/api/orders', require('./routes/orders'));
+app.use('/api/orders', require('./routes/orders'));
 
 // 6. Start the Server
 const PORT = process.env.PORT || 5000;
